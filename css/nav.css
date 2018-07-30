@@ -16,7 +16,7 @@
 }
 .navbar .navbar-text a:hover,
 .navbar .navbar-text a:focus {
-  color: #f9867b; 
+  color: #f9867b;
 }
 .navbar .navbar-nav .nav-link {
   color: #ecf0f1;
@@ -123,4 +123,12 @@
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
   color: #f9867b;
   background-color: #ff5e4d;
+}
+
+footer{
+	background: #333333;
+	margin-top: 30px;
+	padding: 30px;
+	color: #ffffff;
+	text-align: center;
 }
