@@ -14,7 +14,7 @@ require_once 'admin/Database.php';
 
 <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <title>Football Prediction Website</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
@@ -29,7 +29,7 @@ require_once 'admin/Database.php';
 
 <body>
     <div class="container-fluid">
-        <div class="row" style="background: #f9867b;">
+        <div class="row" style="background: #ff5e4d;">
             <div class="col-12">
                 <div class="text-center">
                     <img src="images/bettip.png" alt="Logo here">
@@ -109,13 +109,14 @@ require_once 'admin/Database.php';
                                                 <td><?php echo $data->matchtime ?></td>
                                                 <td><?php echo $data->league ?></td>
                                                 <td><?php echo $data->matches ?></td>
-                                                <td class="<?php echo $retVal = ($data->status == 1) ? 'table-succes' : '' ?>"><?php echo $data->tip1 ?></td>
+                                                <td><?php echo $data->tip1 ?></td>
                                                 <td><?php echo $data->firstpercentage ?> </td>
-                                                <td class="<?php echo $retVal = ($data->status == 2) ? 'table-success' : '' ?>"><?php echo $data->tip2 ?></td>
+                                                <td><?php echo $data->tip2 ?></td>
                                                 <td><?php echo $data->secondpercentage ?> </td>
                                             </tr>
 
                                         <?php
+                                        // echo (new DateTime($data->datecreated))->add(new DateInterval("P1D"))->format('Y-m-d H:i:s');
 
                                         }
                                     }?>
@@ -153,9 +154,9 @@ require_once 'admin/Database.php';
                                                 <td><?php echo $data->matchtime ?></td>
                                                 <td><?php echo $data->league ?></td>
                                                 <td><?php echo $data->matches ?></td>
-                                                <td class=""><?php echo $data->tip1 ?></td>
+                                                <td><?php echo $data->tip1 ?></td>
                                                 <td><?php echo $data->firstpercentage ?> </td>
-                                                <td class=""><?php echo $data->tip2 ?></td>
+                                                <td><?php echo $data->tip2 ?></td>
                                                 <td><?php echo $data->secondpercentage ?> </td>
                                             </tr>
 
@@ -205,22 +206,3 @@ require_once 'admin/Database.php';
 </body>
 
 </html>
-<?php
-    // function getColors($status, $table)
-    // {
-    //     if ($status == 1 && $table == 'tip1') {
-    //         echo "string1";
-    //         return 'table-success';
-    //     } elseif ($status == 2 && $table == 'tip2') {
-    //         echo "string2";
-    //         return 'table-success';
-    //     } elseif ($status != 1 && $table == 'tip1') {
-    //         echo "string3";
-    //         return 'table-danger';
-    //     } elseif ($status != 2 && $table == 'tip2') {
-    //         echo "string4";
-    //         return 'table-danger';
-    //     } else {
-    //         return "";
-    //     }
-    // }

@@ -53,6 +53,36 @@ require_once 'Database.php';
         }
     }
 
+    if ('POST' == $_SERVER['REQUEST_METHOD'] && $_POST['status']) {
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        if ($_POST['status'] == 'won') {
+            if (changeStatus(1, $_POST['id'])) {
+                echo "Updated successfully";
+            } else {
+                echo "Operation Failed, Try again later";
+            }
+        } else {
+            if (changeStatus(0, $_POST['id'])) {
+                echo "Updated successfully";
+            } else {
+                echo "Operation Failed, Try again later";
+            }
+        }
+    }
+
+    function changeStatus($status, $id)
+    {
+        $db = Database::getInstance();
+        $query = 'UPDATE games SET status = :status WHERE id = :id';
+        $db->query($query);
+        $db->bind(':status', $status);
+        $db->bind(':id', $id);
+        if ($db->execute()) {
+            return true;
+        }
+        return false;
+    }
+
     function storeGames(array $data)
     {
         $db = Database::getInstance();

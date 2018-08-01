@@ -58,7 +58,7 @@ $(document).ready(function() {
             [1, 'desc']
         ]
     });
-    
+
     $('#hometable').DataTable();
 
 
@@ -97,4 +97,20 @@ $(document).ready(function() {
             },
         });
     });
+
+    function how_to_submit_Image_using_AJAX() {
+        
+        // $('#form_btn').submit(function (e) {
+        //     let form_data = new FormData($(this)[0]);
+        //     $.ajax({
+        //         url:"",
+        //         type:"POST",
+        //         data: form_data,
+        //         processData:false,
+        //         cache:false,
+        //     });
+        // });
+    }
+
+
 });

@@ -34,13 +34,14 @@
 
 										<tr>
 											<th>TIME</th>
-											<th>PUBLISHED</th>
+											<th>STATUS</th>
 											<th>LEAGUE</th>
 											<th>MATCHES</th>
 											<th>TIP 1</th>
 											<th>TIP%</th>
 											<th>TIP 2</th>
 											<th>TIP%</th>
+											<th></th>
 											<th>ACTIONS</th>
 										</tr>
 									</thead>
@@ -65,6 +66,16 @@
 															<a href="edit.php?id=<?php echo $data->id ?>" class="btn btn-default">Edit</a>
 															<a href="#" id="delete_btn" gid="<?php echo $data->id; ?>" class="btn btn-danger">Delete</a>
 														</td>
+														<td>
+															<div class="dropdown create">
+																  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Actions<span class="caret"></span>
+																  </button>
+																  <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+																	  <li><a type="button" id="won" onclick="changeStatus('won', <?php echo $data->id; ?>)" gid="<?php echo $data->id; ?>">Won</a></li>
+																	  <li><a type="button" id="lost" onclick="changeStatus('lost', <?php echo $data->id; ?>)" gid="<?php echo $data->id; ?>">Lost</a></li>
+																  </ul>
+															</div>
+													</td>
 		                                            </tr>
 		                                        <?php
 		                                        }
@@ -77,4 +88,20 @@
 				</div>
 			</div>
 	</section>
+	<script>
+	function changeStatus(status, id) {
+		$.ajax({
+			method: "POST",
+			url: 'handler.php',
+			cache: false,
+			data: {status:status, id:id},
+			success: function (data) {
+				alert(data);
+			},
+			onerror: function (err) {
+				alert(err);
+			}
+		});
+	}
+	</script>
 <?php require_once 'footer.php';?>
