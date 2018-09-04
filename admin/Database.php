@@ -1,15 +1,17 @@
 <?php
 
+
 /**
  *
  */
 class Database
 {
     private $dbhost = 'localhost';
-    private $dbuser = 'root';
-    private $dbpass = 'Changeless11!';
-    private $dbname = 'bettipsdb';
+    private $dbuser = '';
+    private $dbpass = '';
+    private $dbname = '';
 
+    public $is_authenticated = false;
     private $dbh;
     private $stmt;
     private $error;
@@ -138,6 +140,28 @@ class Database
             return null;
         }
     }
-}
 
-$db = Database::getInstance();
+      public function login($email, $password)
+    {
+        try {
+
+            $query = "SELECT * FROM users WHERE email = :email AND password = :password";
+            $this->query($query);
+            $this->bind(":email", $email);
+            $this->bind(":password", $password);
+            $stmt = $this->execute();
+            $res = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($stmt->rowCount() > 0) {
+                $_SESSION['id'] = $res['id'];
+                $_SESSION['email'] = $res['email'];
+                $this->is_authenticated = true;
+                    return TRUE;
+
+            }
+            return FALSE;
+        } catch (Error $e) {
+            $_SESSION['error'] = $e->getMessage();
+            return FALSE;
+        }
+    }
+}

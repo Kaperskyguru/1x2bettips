@@ -24,6 +24,11 @@ require_once 'admin/Database.php';
         td {
             text-align: center
         }
+        #nav-tab-content {
+            margin:10px;
+            padding:10px;
+
+        }
     </style>
 </head>
 
@@ -33,6 +38,7 @@ require_once 'admin/Database.php';
             <div class="col-12">
                 <div class="text-center">
                     <img src="images/bettip.png" alt="Logo here">
+                    <center><h4>Site for soccer football statistics, predictions, bet tips and analysis</h4></center>
                 </div>
             </div>
         </div>
@@ -47,19 +53,16 @@ require_once 'admin/Database.php';
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
+                        <!--<li class="nav-item">-->
+                        <!--    <a class="nav-link" href="#">FREE TIPS-->
+                        <!--        <span class="sr-only">(current)</span>-->
+                        <!--    </a>-->
+                        <!--</li>-->
+                        <!--<li class="nav-item">-->
+                        <!--    <a class="nav-link" href="#">VIP TIPS</a>-->
+                        <!--</li>-->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">FREE TIPS
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">VIP TIPS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">ABOUT US</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">CONTACT US</a>
+                            <a class="nav-link " href="/about.html">ABOUT/CONTACT US</a>
                         </li>
                     </ul>
                     <form class="form-inline mt-2 mt-md-0">
@@ -76,58 +79,124 @@ require_once 'admin/Database.php';
             <div class="col">
                 <div class="col-12">
                     <div style="margin: 10px">
-                        <h2 style="text-decoration:underline;font-size:18px"> TODAY
-                            <?php echo TODAY ?>
-                         </h2>
+                        <!--<h2 style="text-decoration:underline;font-size:18px"> TODAY-->
+                        <!--    <?php echo TODAY ?>-->
+                        <!-- </h2>-->
                     </div>
-                    <div class="table-responsive">
-                        <table id="table1" class="table table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>TIME</th>
-                                    <th>LEAGUE</th>
-                                    <th>MATCHES</th>
-                                    <th>TIP 1</th>
-                                    <th>TIP%</th>
-                                    <th>TIP 2</th>
-                                    <th>TIP%</th>
+                    </div>
+                        <ul class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <li class="nav-item">
+                                 <a class="nav-item nav-link active" data-toggle="tab" href="#today">TODAY</a>
+                            </li>
+                           <li class="nav-item">
+                                 <a class="nav-item nav-link" data-toggle="tab" href="#yesterday">PAST GAMES</a>
+                          </li>
+                        </ul>
 
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <?php
-                                    $db = Database::getInstance();
-                                    $query = 'SELECT * FROM games WHERE matchdate = :date ORDER BY id DESC';
-                                    // echo $query;
-                                    $db->query($query);
-                                    $db->bind(':date', date((new DateTime('today'))->format('Y-m-d')));
-                                    $stmt = $db->execute();
-                                    if ($stmt->rowCount() > 0) {
-                                        while ($data = $stmt->fetch(PDO::FETCH_OBJ)) {?>
+                        <div class="tab-content" id="nav-tab-content">
+                            <!--<div class="table-responsive">-->
+                                <div id="today" class="tab-pane fade show active"  role="tabpanel" aria-labelledby="nav-home-tab">
+                                    <table id="table1" class="table table-bordered">
+                                        <thead class="thead-dark">
                                             <tr>
-                                                <td><?php echo $data->matchtime ?></td>
-                                                <td><?php echo $data->league ?></td>
-                                                <td><?php echo $data->matches ?></td>
-                                                <td class="<?php echo $retVal = ($data->status == 1) ? 'table-succes' : '' ?>"><?php echo $data->tip1 ?></td>
-                                                <td><?php echo $data->firstpercentage ?> </td>
-                                                <td class="<?php echo $retVal = ($data->status == 2) ? 'table-success' : '' ?>"><?php echo $data->tip2 ?></td>
-                                                <td><?php echo $data->secondpercentage ?> </td>
+                                                <th>TIME</th>
+                                                <th>LEAGUE</th>
+                                                <th>MATCHES</th>
+                                                <th>TIP 1</th>
+                                                <th>TIP%</th>
+                                                <th>TIP 2</th>
+                                                <th>TIP%</th>
+
                                             </tr>
+                                        </thead>
 
-                                        <?php
+                                        <tbody>
+                                            <?php
+                                                $db = Database::getInstance();
+                                                $query = 'SELECT * FROM games WHERE matchdate = :date ORDER BY id DESC';
+                                                // echo $query;
+                                                $db->query($query);
+                                                $db->bind(':date', date((new DateTime('today'))->format('Y-m-d')));
+                                                $stmt = $db->execute();
+                                                if ($stmt->rowCount() > 0) {
+                                                    while ($data = $stmt->fetch(PDO::FETCH_OBJ)) {?>
+                                                        <tr>
+                                                            <td><?php echo $data->matchtime ?></td>
+                                                            <td><?php echo $data->league ?></td>
+                                                            <td><?php echo $data->matches ?></td>
+                                                            <td class="<?php echo $retVal = ($data->status == 1) ? 'table-succes' : '' ?>"><?php echo $data->tip1 ?></td>
+                                                            <td><?php echo $data->firstpercentage ?> </td>
+                                                            <td class="<?php echo $retVal = ($data->status == 2) ? 'table-success' : '' ?>"><?php echo $data->tip2 ?></td>
+                                                            <td><?php echo $data->secondpercentage ?> </td>
+                                                        </tr>
 
-                                        }
-                                    }?>
-                        </table>
+                                                    <?php
+
+                                                    }
+                                                }?>
+                                        </tbody>
+                                    </table>
+                                <!--</div>-->
+                            </div>
+
+                            <!--YESTERDAY STARTS HERE-->
+                            <!--<div class="table-responsive">-->
+                                <div id="yesterday" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                    <table id="table2" class="table table-bordered">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>TIME</th>
+                                                <th>LEAGUE</th>
+                                                <th>MATCHES</th>
+                                                <th>TIP 1</th>
+                                                <th>TIP%</th>
+                                                <th>TIP 2</th>
+                                                <th>TIP%</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <?php
+                                                $db = Database::getInstance();
+                                                $query = 'SELECT * FROM games WHERE matchdate != :date AND matchdate != :yesdate ORDER BY id DESC';
+                                                $db->query($query);
+                                                $db->bind(':date', date((new DateTime('today'))->format('Y-m-d')));
+                                                $db->bind(':yesdate', date((new DateTime('tomorrow'))->format('Y-m-d')));
+                                                $stmt = $db->execute();
+                                                if ($stmt->rowCount() > 0) {
+                                                    while ($data = $stmt->fetch(PDO::FETCH_OBJ)) {?>
+                                                        <tr>
+                                                            <td><?php echo $data->matchtime ?></td>
+                                                            <td><?php echo $data->league ?></td>
+                                                            <td><?php echo $data->matches ?></td>
+                                                            <td class="<?php echo $retVal = ($data->status == 1) ? 'table-succes' : '' ?>"><?php echo $data->tip1 ?></td>
+                                                            <td><?php echo $data->firstpercentage ?> </td>
+                                                            <td class="<?php echo $retVal = ($data->status == 2) ? 'table-success' : '' ?>"><?php echo $data->tip2 ?></td>
+                                                            <td><?php echo $data->secondpercentage ?> </td>
+                                                        </tr>
+
+                                                    <?php
+
+                                                    }
+                                                }?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        <!--</div>-->
                     </div>
+                    </div>
+
                     <br />
                     <br />
+
                     <div style="margin-top: 10px">
                         <h2 style="text-decoration:underline;font-size:18px"> TOMORROW <?php echo TOMMOROW; ?> </h2>
                     </div>
+
                     <div class="table-responsive">
-                        <table id="table2" class="table table-bordered">
+                        <table id="table3" class="table table-bordered">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>TIME</th>
@@ -176,7 +245,7 @@ require_once 'admin/Database.php';
                 <p style="text-align:justify; font-size:12px;"> </p>
             </div>
             <div class="copyright" style="text-align:center;">
-                <a href="admin/login.php"> Login </a>
+                <!--<a href="admin/login.php"> Login </a>-->
                 <p>copyright&copy;1X2Bettips.com</p>
                 <p>All Rights Reserved 1X2Bettips.com 2017 - 2018 </p>
             </div>
@@ -198,6 +267,10 @@ require_once 'admin/Database.php';
                 // "order": [[0, 'desc']]
             });
             $('#table2').DataTable({
+                "order": [[1, 'desc']]
+            });
+
+            $('#table3').DataTable({
                 "order": [[1, 'desc']]
             });
         });

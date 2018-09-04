@@ -1,15 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
+<?php 
+session_start();
+ob_start();
+error_reporting(E_ALL);
+require_once 'Database.php';
+$db = Database::getInstance();
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+  if ($db->login($_POST['email'], $_POST['password'])) {
+      var_dump($_SESSION);
+      exit(header('Location:index.php'));
+  } else {
+      echo 'Details not correct';
+  }
+}
+?>
+    <!DOCTYPE html>
+    <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>Admin Portal | Account login</title>
-
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	 <meta http-equiv="X-UA-compatible" content="IE=edge"> 
+	 <meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<title>Admin Portal</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -34,7 +47,7 @@
 
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">Register</a></li>
-					<li><a href="login.html">Login</a></li>
+					<li><a href="login.php">Login</a></li>
 				</ul>
 			</div>
 		</div>
@@ -54,14 +67,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-          <form class="well" id="login" action="index.html" method="post">
+          <form class="well" id="login" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
               <div class="form-group">
                 <label>Email Address</label>
-                <input type="email" class="form-control" name="" placeholder="Enter Email Address">
+                <input type="email" name="email" class="form-control" name="" placeholder="Enter Email Address">
               </div>
               <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" name="" placeholder="Enter your Password">
+                <input type="password" name="password" class="form-control" name="" placeholder="Enter your Password">
               </div>
               <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-default btn-block">

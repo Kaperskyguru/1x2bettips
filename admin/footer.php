@@ -36,6 +36,7 @@
 							<select id="tip1" class="form-control">
 								<option>Over 1.5</option>
 								<option>Over 3.5</option>
+								<option>Over 2.5</option>
 								<option>Over 4.5</option>
 								<option>Under 3.5</option>
 								<option>Under 4.5</option>
@@ -62,6 +63,22 @@
 								<option>2</option>
 								<option>12</option>
 								<option>X</option>
+								<option>2 to 5 goals</option>
+								<option>2 to 4 goals</option>
+								<option>3 to 5 goals</option>
+								<option>3 to 6 goals</option>
+								<option>10minX</option>
+								<option>15minX</option>
+								<option>Handicap 1 (0-2)</option>
+								<option>Handicap 1 (2-0)</option>
+								<option>Handicap 2 (2-0)</option>
+								<option>Handicap 2 (0-2)</option>
+								<option>Handicap 2 (0-3)</option>
+								<option>Handicap 2 (3-0)</option>
+								<option>Handicap 1 (0-3)</option>
+								<option>Handicap 1 (3-0)</option>
+								
+								<option>X2 and under 4.5</option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -94,6 +111,7 @@
 							<select id="tip2" class="form-control">
 								<option>Over 1.5</option>
 								<option>Over 3.5</option>
+								<option>Over 2.5</option>
 								<option>Over 4.5</option>
 								<option>Under 3.5</option>
 								<option>Under 4.5</option>
@@ -120,6 +138,21 @@
 								<option>2</option>
 								<option>12</option>
 								<option>X</option>
+								<option>2 to 5 goals</option>
+								<option>2 to 4 goals</option>
+								<option>3 to 5 goals</option>
+								<option>3 to 6 goals</option>
+								<option>10minX</option>
+								<option>15minX</option>
+								<option>Handicap 1 (0-2)</option>
+								<option>Handicap 1 (2-0)</option>
+								<option>Handicap 2 (2-0)</option>
+								<option>Handicap 2 (0-2)</option>
+								<option>Handicap 2 (0-3)</option>
+								<option>Handicap 2 (3-0)</option>
+								<option>Handicap 1 (0-3)</option>
+								<option>Handicap 1 (3-0)</option>
+								<option>X2 and under 4.5</option>
 							</select>
 						</div>
 						<div class="form-group">

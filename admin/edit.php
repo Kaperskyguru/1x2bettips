@@ -57,13 +57,27 @@
   							<label for="">Game Tip 1</label>
   							<select id="tip1" class="form-control">
 								<option><?php echo $row->tip1 ?></option>
+								<option>(0 - 2)3</option>
+								<option>1(0 - 3)</option>
+								<option>1 (0 - 2)</option>
+								<option>(0 - 1) 2</option>
+								<option>(0 - 2) 2</option>
+								<option>1 (0 - 1)</option>
 								<option>Over 1.5</option>
+								<option>1 (0 - 2)</option>
+								<option>3 - 6 goals</option>
+								<option>2 - 4 goals</option>
+								<option>2 - 5 goals</option>
+								<option>X2 and Under 4.5</option>
+								<option>Over 1.5</option>
+								<option>Over 2.5</option>
   								<option>Over 3.5</option>
   								<option>Over 4.5</option>
   								<option>Under 3.5</option>
   								<option>Under 4.5</option>
   								<option>1DNB</option>
   								<option>2DNB</option>
+  								<option>12 and Over 1.5</option>
   								<option>1X and over 1.5</option>
   								<option>X2 and over 1.5</option>
   								<option>1X and under 4.5</option>
@@ -117,13 +131,27 @@
   							<label for="">Game Tip 2</label>
   							<select id="tip2" class="form-control">
 								<option><?php echo $row->tip2 ?></option>
-  								<option>Over 1.5</option>
+  								<option>(0 - 2)3</option>
+								<option>1(0 - 3)</option>
+								<option>1 (0 - 2)</option>
+								<option>(0 - 1) 2</option>
+								<option>(0 - 2) 2</option>
+								<option>1 (0 - 1)</option>
+								<option>Over 1.5</option>
+								<option>1 (0 - 2)</option>
+								<option>3 - 6 goals</option>
+								<option>2 - 4 goals</option>
+								<option>2 - 5 goals</option>
+								<option>X2 and Under 4.5</option>
+								<option>Over 1.5</option>
+								<option>Over 2.5</option>
   								<option>Over 3.5</option>
   								<option>Over 4.5</option>
   								<option>Under 3.5</option>
   								<option>Under 4.5</option>
   								<option>1DNB</option>
   								<option>2DNB</option>
+  								<option>12 and Over 1.5</option>
   								<option>1X and over 1.5</option>
   								<option>X2 and over 1.5</option>
   								<option>1X and under 4.5</option>

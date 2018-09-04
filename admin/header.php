@@ -1,11 +1,18 @@
-<?php require_once 'Database.php';
-$db = Database::getInstance();?>
+<?php
+session_start();
+require_once 'Database.php';
+$db = Database::getInstance();
+    if( !isset($_SESSION['id']) ) {
+    	exit( header( 'Location:https://1x2bettips.com.ng' ) );
+    }
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<!-- <meta http-equiv="X-UA-compatible" content="IE=edge"> -->
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+	 <meta http-equiv="X-UA-compatible" content="IE=edge">
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Admin Portal</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
@@ -32,7 +39,7 @@ $db = Database::getInstance();?>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Welcome, Kapersky</a></li>
+					<li><a href="#">Welcome, <?php echo explode('@', $_SESSION['email'][0]);?></a></li>
 					<li><a href="login.php">Log out</a></li>
 				</ul>
 			</div>
